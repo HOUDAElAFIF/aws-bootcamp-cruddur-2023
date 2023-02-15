@@ -32,4 +32,7 @@
   
 
   #### 4- Testing 
+   - I created an EC2 instance and then terminated it, so I immediately received the email 
+   ![Screenshot --> ](./ressources/12.png)
+   
  
