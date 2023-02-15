@@ -28,7 +28,8 @@
   #### 3- Create an Event Bridge Rule 
    ![Screenshot --> ](./ressources/6.png)
    ![Screenshot --> ](./ressources/7.png)
-   ![Screenshot --> ](./ressources/8.png)
-   ![Screenshot --> ](./ressources/9.png)
+   ![Screenshot --> ](./ressources/8.png) ![Screenshot --> ](./ressources/9.png)
+  
 
   #### 4- Testing 
+ 
