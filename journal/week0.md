@@ -16,11 +16,11 @@
 
 ## 3-Homework Challenges 
 
- ### - Destroying the root account credentials, Set MFA, IAM role 
+ ### A- Destroying the root account credentials, Set MFA, IAM role 
 ![Screenshot --> ](./ressources/1.png)  
 ![](./ressources/3.png)
 ![](./ressources/2.png)
- ### - Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue in my case ( when an ec2 instance is terminated)
+ ### B- Use EventBridge to hookup Health Dashboard to SNS and send notification when there is a service health issue in my case ( when an ec2 instance is terminated)
   #### 1- Creating an SNS Topic 
   ![Screenshot --> ](./ressources/4.png)
   #### 2- Adding a subscription to the SNS Topic and confirm it 
