@@ -39,4 +39,4 @@
  ### C- Creating the CI/CD logical pipeline in Lucid Charts 
 
   ![Screenshot --> ](./ressources/14.png)
-- [Link to Lucid Chart(page2) ](https://lucid.app/lucidchart/96438c5f-b9ff-4665-9649-8ae7b929a426/edit?viewport_loc=-105%2C128%2C1613%2C754%2C0_0&invitationId=inv_bd8e93ed-9fd4-40ab-97b4-bad934eb0e0d)
+- [Link to Lucid Chart ](https://lucid.app/lucidchart/96438c5f-b9ff-4665-9649-8ae7b929a426/edit?viewport_loc=-105%2C128%2C1613%2C754%2C0_0&invitationId=inv_bd8e93ed-9fd4-40ab-97b4-bad934eb0e0d)
