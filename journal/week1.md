@@ -19,7 +19,7 @@
 
 ## - Extending the docker file to set up DynamoDB local and Postgres
 
-[Docker-compose file  --> ](../docker-compose.yml)
+[ 👉 Docker-compose file ](../docker-compose.yml)
 
 ![Result  --> ](./ressources/18.png) 
 
@@ -45,7 +45,8 @@ aws dynamodb create-table \
 
 ![Result  --> ](./ressources/20.png)
 
-## - Docker container best practices
+## - Docker container security  best practices
+👉 [Link to the tutorial ](https://www.youtube.com/watch?v=OjZz4D0B-cA&list=PLBfufR7vyJJ7k25byhRXJldB5AiwgNnWv&index=25)
    - image vulnerability scanning
    - use secret management services
    - keep docker & host updated to last security patches 
