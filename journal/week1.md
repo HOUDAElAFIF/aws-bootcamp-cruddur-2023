@@ -1,7 +1,7 @@
 # Week 1 — App Containerization 🚀
 ## - First we will start by adding the notifications feature to our app 
-- adding the notifications's activity the the flask's services 
-- adding the notifactions's page in the recat-js frontend 
+- adding the notifications's activity to the flask's services 
+- adding the notifactions's page to the recat-js frontend 
 
 ![Result  --> ](./ressources/17.png)
 
