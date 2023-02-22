@@ -3,7 +3,7 @@
 - adding the notifications's activity the the flask's services 
 - adding the notifactions's page in the recat-js frontend 
 
-![Result  --> ](./journal/ressources/17.png)
+![Result  --> ](./ressources/17.png)
 
 ## - creating dockerfiles for the frontend & backend
 ![frontend's dockerfile --> ](./backend-flask/Dockerfile)
@@ -13,7 +13,7 @@
 ## - using Docker Compose to launch our multicontainer APP 
 ![Docker-compose file  --> ](./docker-compose.yml)
 
-![Result  --> ](./journal/ressources/14.png) 
+![Result  --> ](./ressources/14.png) 
 
 
 
@@ -21,11 +21,11 @@
 
 ![Docker-compose file  --> ](./docker-compose.yml)
 
-![Result  --> ](./journal/ressources/17.png) 
+![Result  --> ](./ressources/17.png) 
 
 ### testing Postgres 
 
-![Result  --> ](./journal/ressources/19.png)
+![Result  --> ](./ressources/19.png)
 
 ### testing DynamoDB
 ```
@@ -43,4 +43,4 @@ aws dynamodb create-table \
 
 ```
 
-![Result  --> ](./journal/ressources/20.png)
+![Result  --> ](./ressources/20.png)
