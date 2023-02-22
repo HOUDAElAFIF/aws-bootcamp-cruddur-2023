@@ -23,11 +23,11 @@
 
 ![Result  --> ](./ressources/18.png) 
 
-### testing Postgres 
+### - testing Postgres 
 
 ![Result  --> ](./ressources/19.png)
 
-### testing DynamoDB
+### - testing DynamoDB
 ```
 aws dynamodb create-table \
     --table-name Music \
@@ -52,6 +52,6 @@ aws dynamodb create-table \
    - keep docker & host updated to last security patches 
    - docker deamon and containers should run in a non-user mode
 
-  **Trying -snyk- for image vulnarebility scanning**
+ 🚩 **Trying -snyk- for image vulnarebility scanning**
 
 ![Result  --> ](./ressources/21.png) 
