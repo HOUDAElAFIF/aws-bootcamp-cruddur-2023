@@ -6,20 +6,20 @@
 ![Result  --> ](./ressources/17.png)
 
 ## - creating dockerfiles for the frontend & backend
-![frontend's dockerfile --> ](./backend-flask/Dockerfile)
+[frontend's dockerfile --> ](backend-flask/Dockerfile)
 
-![backend's dockerfile --> ](./fronted-react-js/Dockerfile)
+[backend's dockerfile --> ](fronted-react-js/Dockerfile)
 
 ## - using Docker Compose to launch our multicontainer APP 
 ![Docker-compose file  --> ](./docker-compose.yml)
 
-![Result  --> ](./ressources/14.png) 
+![Result  --> ](./ressources/15.png) 
 
 
 
 ## - Extending the docker file to set up DynamoDB local and Postgres
 
-![Docker-compose file  --> ](./docker-compose.yml)
+[Docker-compose file  --> ](docker-compose.yml)
 
 ![Result  --> ](./ressources/17.png) 
 
