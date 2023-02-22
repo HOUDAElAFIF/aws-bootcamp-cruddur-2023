@@ -21,7 +21,7 @@
 
 [Docker-compose file  --> ](../docker-compose.yml)
 
-![Result  --> ](./ressources/17.png) 
+![Result  --> ](./ressources/18.png) 
 
 ### testing Postgres 
 
@@ -44,3 +44,13 @@ aws dynamodb create-table \
 ```
 
 ![Result  --> ](./ressources/20.png)
+
+## - Docker container best practices
+   - image vulnerability scanning
+   - use secret management services
+   - keep docker & host updated to last security patches 
+   - docker deamon and containers should run in a non-user mode
+
+  **Trying -snyk- for image vulnarebility scanning**
+
+![Result  --> ](./ressources/21.png) 
