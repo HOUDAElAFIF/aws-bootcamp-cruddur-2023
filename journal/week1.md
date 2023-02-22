@@ -1,17 +1,17 @@
-# Week 1 — App Containerization 
-## First we will start by adding the notifications feature to our app 
+# Week 1 — App Containerization 🚀
+## - First we will start by adding the notifications feature to our app 
 - adding the notifications's activity the the flask's services 
 - adding the notifactions's page in the recat-js frontend 
 
 ![Result  --> ](./ressources/17.png)
 
 ## - creating dockerfiles for the frontend & backend
-[frontend's dockerfile --> ](../backend-flask/Dockerfile)
+[frontend's dockerfile 👉 ](../backend-flask/Dockerfile)
 
-[backend's dockerfile --> ](../fronted-react-js/Dockerfile)
+[backend's dockerfile 👉 ](../fronted-react-js/Dockerfile)
 
 ## - using Docker Compose to launch our multicontainer APP 
-![Docker-compose file  --> ](../docker-compose.yml)
+[Docker-compose file  👉 ](../docker-compose.yml)
 
 ![Result  --> ](./ressources/15.png) 
 
