@@ -84,3 +84,20 @@ sudo usermod -a -G docker ec2-user"
 ### - **Verifying that docker is installed and pulling hello-world image**
 
 ![DEMO  --> ](./ressources/27.png)
+
+
+## 3- implementing a healthcheck in the Docker compose file
+
+ ⚠️ In production environemenent its possible that we run multiple containers that could crush , sometimes our application crashes but the process itself is still running. In that scenario, we might not know the exact status of the container ! 
+
+  👉 **Configuring  a health check within the composefile on the frontend service to test the backend endpoint**
+ ![DEMO  --> ](./ressources/28.png)
+
+- **test**: This property specifies the command that will be executed and is the health check of the container
+- **interval**: This property specifies the number of seconds to initially wait before executing the health check and then the frequency at which subsequent health checks will be performed.
+-**timeout**: This property specifies the number of seconds Docker awaits for your health check command to return an exit code before declaring it as failed.
+-**retries**: This property specifies the number of consecutive health check failures required to declare the container as unhealthy.
+
+## 4- installing Docker on my local machine and get the app running using wsl on vscode
+
+ 
