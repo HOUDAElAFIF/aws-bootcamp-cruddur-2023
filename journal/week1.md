@@ -65,3 +65,22 @@ aws dynamodb create-table \
 ![DEMO  --> ](./ressources/24.png)
 
 ## 2- Launch an EC2 instance that has docker installed 
+
+**after setting up vpc , subnet and security group !**
+I launched an ec2 instance and added the following script to the user-data
+```
+#!#!/bin/bash
+sudo yum update -y
+sudo amazon-linux-extras install docker
+sudo service docker start
+sudo systemctl enable docker
+sudo usermod -a -G docker ec2-user"
+
+```
+### - **trying to connect to the ec2 instance from my local**
+
+![DEMO  --> ](./ressources/26.png)
+
+### - **Verifying that docker is installed and pulling hello-world image**
+
+![DEMO  --> ](./ressources/27.png)
