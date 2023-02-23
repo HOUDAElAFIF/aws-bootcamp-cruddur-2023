@@ -1,7 +1,7 @@
 # Week 1 — App Containerization 🚀
 ## - First we will start by adding the notifications feature to our app 
-- adding the notifications's activity to the flask's services 
-- adding the notifactions's page to the recat-js frontend 
+- adding the notifications's activity the the flask's services 
+- adding the notifactions's page in the recat-js frontend 
 
 ![Result  --> ](./ressources/17.png)
 
@@ -55,3 +55,13 @@ aws dynamodb create-table \
  🚩 **Trying -snyk- for image vulnarebility scanning**
 
 ![Result  --> ](./ressources/21.png) 
+
+# Since we have completed the homework assignments, let's move on to tackling some homework challenges 🏆
+
+## 1- Push and tag a image to DockerHub
+-  create a dockerhub account , then -->
+![DEMO  --> ](./ressources/22.png) (./ressources/23.png) 
+
+![DEMO  --> ](./ressources/24.png)
+
+## 2- Launch an EC2 instance that has docker installed 
