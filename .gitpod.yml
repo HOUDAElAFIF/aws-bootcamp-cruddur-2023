@@ -16,7 +16,7 @@ tasks:
       sudo apt install -y postgresql-client-13 libpq-dev  
   - name: reactjs
     command: |
-      cd frontzns-react-js 
+      cd frontend-react-js 
       npm i 
 
 

@@ -17,6 +17,10 @@ from services.show_activity import *
 from aws_xray_sdk.core import xray_recorder
 from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
 
+# CloudWatch Logs ----
+import watchtower
+import logging 
+from time import strftime
 
 
 
@@ -28,6 +32,18 @@ from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExport
 from opentelemetry.sdk.trace import TracerProvider
 from opentelemetry.sdk.trace.export import BatchSpanProcessor
 from opentelemetry.sdk.trace.export import ConsoleSpanExporter, SimpleSpanProcessor
+
+
+# Configuring Logger to Use CloudWatch
+# Configuring Logger to Use CloudWatch
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(cw_handler)
+LOGGER.info("some message") 
+
 
 # HoneyComb ---------
 # Initialize tracing and an exporter that can send data to Honeycomb
@@ -64,6 +80,13 @@ cors = CORS(
   allow_headers="content-type,if-modified-since",
   methods="OPTIONS,GET,HEAD,POST"
 )
+
+@app.after_request
+def after_request(response):
+  timestamp = strftime('[%Y-%b-%d %H:%M]')
+  LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+  return response
+
 
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():
@@ -102,7 +125,7 @@ def data_create_message():
 
 @app.route("/api/activities/home", methods=['GET'])
 def data_home():
-  data = HomeActivities.run()
+  data = HomeActivities.run(logger=LOGGER)
   return data, 200
 
 @app.route("/api/activities/@<string:handle>", methods=['GET'])
