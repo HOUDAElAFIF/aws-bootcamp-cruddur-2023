@@ -40,7 +40,6 @@ Nowadays we need better ways of finding problems that happens in our systems tha
 ```
 aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 ```
-![aws x-ray results --> ](./ressources/30.png)
 
 ![aws x-ray results --> ](./ressources/31.png)
 
@@ -103,6 +102,85 @@ gp env HONEYCOMB_SERVICE_NAME="Cruddur"
 
 ![honeycomb results --> ](./ressources/32.png)
 
+## C- cloudwatch 
+
+### descripption : we will be using watchtower as ana adapter between python system login and cloudwatch logs , it uses python boto sdk , lets u plug ur app logs directly to cloudwatch 
+
+```py
+# Configuring Logger to Use CloudWatch
+LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.DEBUG)
+console_handler = logging.StreamHandler()
+cw_handler = watchtower.CloudWatchLogHandler(log_group='cruddur')
+LOGGER.addHandler(console_handler)
+LOGGER.addHandler(cw_handler)
+LOGGER.info("some message")
+```
+
+```py
+@app.after_request
+def after_request(response):
+    timestamp = strftime('[%Y-%b-%d %H:%M]')
+    LOGGER.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path, response.status)
+    return response
+```
+
+We'll log something in an API endpoint
+```py
+LOGGER.info('Hello Cloudwatch! from  /api/activities/home')
+```
+
+Set the env var in for `docker-compose.yml`
+
+```yml
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+```
+
+![cloudwatch results --> ](./ressources/30.png)
+
+
+## D- Rollbar 
+ ## *Rollbar provides real-time error tracking & debugging tools for developers*
+
+ Import for Rollbar
+
+```py
+import rollbar
+import rollbar.contrib.flask
+from flask import got_request_exception
+```
+
+```py
+rollbar_access_token = os.getenv('ROLLBAR_ACCESS_TOKEN')
+@app.before_first_request
+def init_rollbar():
+    """init rollbar module"""
+    rollbar.init(
+        # access token
+        rollbar_access_token,
+        # environment name
+        'production',
+        # server root directory, makes tracebacks prettier
+        root=os.path.dirname(os.path.realpath(__file__)),
+        # flask already sets up logging
+        allow_logging_basic_config=False)
+
+    # send exceptions from `app` to rollbar, using flask's signal system.
+    got_request_exception.connect(rollbar.contrib.flask.report_exception, app)
+```
+
+We'll add an endpoint just for testing rollbar to `app.py`
+
+```py
+@app.route('/rollbar/test')
+def rollbar_test():
+    rollbar.report_message('Hello World!', 'warning')
+    return "Hello World!"
+```
+
+![rollbar results --> ](./ressources/33.png)
 
 
 
