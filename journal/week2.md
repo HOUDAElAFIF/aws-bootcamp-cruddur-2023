@@ -14,11 +14,9 @@ Nowadays we need better ways of finding problems that happens in our systems tha
 # 1-Instrumenting our backend flask application 
 
 ## A- AWS X-RAY  
-**a service developed by Amazon that enables developers to conduct performance analysis and debug distributed systems**
-
 
  👉 X-RAY architecture 
-![x-ray architecture --> ](./ressources/19.png)
+![x-ray architecture --> ](./ressources/29.png)
 - Add Deamon Service to Docker Compose
  ```
   xray-daemon:
@@ -42,7 +40,70 @@ Nowadays we need better ways of finding problems that happens in our systems tha
 ```
 aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 ```
+![aws x-ray results --> ](./ressources/30.png)
+
 ![aws x-ray results --> ](./ressources/31.png)
+
+
+## B- Honeycomb 
+#### *Reveals the truth about how your system is behaving on the real world*
+
+When creating a new dataset in Honeycomb it will provide all these installation insturctions
+
+We'll add the following files to  `requirements.txt`
+
+```
+opentelemetry-api 
+opentelemetry-sdk 
+opentelemetry-exporter-otlp-proto-http 
+opentelemetry-instrumentation-flask 
+opentelemetry-instrumentation-requests
+```
+Adding to the `app.py`
+
+```py
+from opentelemetry import trace
+from opentelemetry.instrumentation.flask import FlaskInstrumentor
+from opentelemetry.instrumentation.requests import RequestsInstrumentor
+from opentelemetry.exporter.otlp.proto.http.trace_exporter import OTLPSpanExporter
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+```
+
+```py
+# Initialize tracing and an exporter that can send data to Honeycomb
+provider = TracerProvider()
+processor = BatchSpanProcessor(OTLPSpanExporter())
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+tracer = trace.get_tracer(__name__)
+```
+
+```py
+# Initialize automatic instrumentation with Flask
+app = Flask(__name__)
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+```
+Add teh following Env Vars to `backend-flask` in docker compose
+
+```yml
+OTEL_EXPORTER_OTLP_ENDPOINT: "https://api.honeycomb.io"
+OTEL_EXPORTER_OTLP_HEADERS: "x-honeycomb-team=${HONEYCOMB_API_KEY}"
+OTEL_SERVICE_NAME: "${HONEYCOMB_SERVICE_NAME}"
+```
+
+```sh
+# setting up the env vars 
+export HONEYCOMB_API_KEY=""
+export HONEYCOMB_SERVICE_NAME="Cruddur"
+gp env HONEYCOMB_API_KEY=""
+gp env HONEYCOMB_SERVICE_NAME="Cruddur"
+```
+
+![honeycomb results --> ](./ressources/32.png)
+
+
 
 
 
