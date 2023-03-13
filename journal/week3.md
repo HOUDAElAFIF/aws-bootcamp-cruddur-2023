@@ -1,7 +1,8 @@
 # Week 3 — Decentralized Authentication
 
-## - AWS Cognito 
+##  AWS Cognito 
 *a powerful and flexible tool for handling user authentication, authorization, and data management in mobile and web applications.*
+
 **Let's jump to add authentification to the cruddur App** 🚀
 
 ## 1- Creating Cognito User Pool using aws console 
@@ -130,4 +131,4 @@ def data_home():
 
 ![DEMO confirmation --> ](./ressources/39.jpeg)
 
-![DEMO logout --> ](./ressources/40.jpeg)
+![DEMO logout --> ](./ressources/40.png)
