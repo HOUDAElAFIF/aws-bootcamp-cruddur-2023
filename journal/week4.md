@@ -26,6 +26,7 @@ aws rds create-db-instance \
   --no-deletion-protection
 
 ```
+![DEMO --> ](./ressources/4-1.png)
 
  To create a local insatance we'll use the following command 
  ```bash
@@ -145,5 +146,73 @@ psycopg[pool]
     """
     return sql
 ```
+##  Configure Lambda function and Create AWS Cognito trigger to insert user
+
+ - create a lambda function  so that the user will be inserted in our database  after cognito confirmation 
+```py
+import json
+import psycopg2
+import os
+
+def lambda_handler(event, context):
+    user = event['request']['userAttributes']
+    print('userAttributes')
+    print(user)
+
+    user_display_name  = user['name']
+    user_email         = user['email']
+    user_handle        = user['preferred_username']
+    user_cognito_id    = user['sub']
+    try:
+      print('entered-try')
+      sql = f"""
+         INSERT INTO public.users (
+          display_name, 
+          email,
+          handle, 
+          cognito_user_id
+          ) 
+        VALUES(
+        '{user_display_name}',
+        '{user_email}',
+        '{user_handle}',
+        '{user_cognito_id}')
+      """
+      print('SQL Statement ----')
+      print(sql)
+      conn = psycopg2.connect(os.getenv('CONNECTION_URL'))
+      cur = conn.cursor()
+      cur.execute(sql)
+      conn.commit() 
+
+    except (Exception, psycopg2.DatabaseError) as error:
+      print(error)
+    finally:
+      if conn is not None:
+          cur.close()
+          conn.close()
+          print('Database connection closed.')
+    return event
+
+```
+
+- add the psycopg layer using the following ARN 
+```
+arn:aws:lambda:us-east-1:898466741470:layer:psycopg2-py38:2
+```
+- configure Cognito Lambda Trigger
+   -Set the Trigger type to Sign-up.
+   -Set the Sign-up trigger to Post confirmation.
+   -Assign Lambda function that was just created.
+
+
+![DEMO --> ](./ressources/4-3.png)   
+![DEMO --> ](./ressources/4-5.png)
+
+
+## Implement and Create Activity & Link it with RDS
+
+![DEMO --> ](./ressources/4-6.png) 
+![DEMO --> ](./ressources/4-7.png)     
 
 
