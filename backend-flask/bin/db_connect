@@ -1,0 +1,8 @@
+if [ "$1" = "prod" ]; then
+  echo "Running in production mode"
+  URL=$PRO_CONNECTION_URL
+else
+  URL=$CONNECTION_URL
+fi
+
+psql $URL

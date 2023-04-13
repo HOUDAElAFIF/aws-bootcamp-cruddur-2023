@@ -1,0 +1,12 @@
+#! /usr/bin/bash
+-e # stop if it fails at any point
+
+#echo "==== db-setup"
+
+bin_path="$(realpath .)/bin"
+
+source "$bin_path/db_drop"
+source "$bin_path/db_create"
+source "$bin_path/db_schema_load"
+source "$bin_path/db_seed"
+
