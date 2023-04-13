@@ -213,6 +213,9 @@ arn:aws:lambda:us-east-1:898466741470:layer:psycopg2-py38:2
 ## Implement and Create Activity & Link it with RDS
 
 ![DEMO --> ](./ressources/4-6.png) 
+
+- actvities table results 
+
 ![DEMO --> ](./ressources/4-7.png)     
 
 
