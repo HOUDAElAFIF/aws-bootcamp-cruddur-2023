@@ -6,11 +6,10 @@ import DesktopNavigation  from '../components/DesktopNavigation';
 import MessageGroupFeed from '../components/MessageGroupFeed';
 import MessagesFeed from '../components/MessageFeed';
 import MessagesForm from '../components/MessageForm';
-
-// [TODO] Authenication
-import Cookies from 'js-cookie'
+import checkAuth from '../lib/CheckAuth';
 
 export default function MessageGroupPage() {
+  const [otherUser, setOtherUser] = React.useState([]);
   const [messageGroups, setMessageGroups] = React.useState([]);
   const [messages, setMessages] = React.useState([]);
   const [popped, setPopped] = React.useState([]);
@@ -18,18 +17,33 @@ export default function MessageGroupPage() {
   const dataFetchedRef = React.useRef(false);
   const params = useParams();
 
+  const loadUserShortData = async () => {
+    try {
+      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/users/@${params.handle}/short`
+      const res = await fetch(backend_url, {
+        method: "GET"
+      });
+      let resJson = await res.json();
+      if (res.status === 200) {
+        console.log('other user:',resJson)
+        setOtherUser(resJson)
+      } else {
+        console.log(res)
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };  
+
   const loadMessageGroupsData = async () => {
-    //console.log(localStorage.getItem("access_token"));
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
       const res = await fetch(backend_url, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
+            Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
         },
         method: "GET"
       });
-      //console.log("ana hadi")
-      console.log(Request.Authorization)
       let resJson = await res.json();
       if (res.status === 200) {
         setMessageGroups(resJson)
@@ -41,51 +55,20 @@ export default function MessageGroupPage() {
     }
   };  
 
-  const loadMessageGroupData = async () => {
-    try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${params.message_group_uuid}`
-      const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
-        },
-        method: "GET"
-      });
-      let resJson = await res.json();
-      if (res.status === 200) {
-        setMessages(resJson)
-      } else {
-        console.log(res)
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };  
-
-  const checkAuth = async () => {
-    console.log('checkAuth')
-    // [TODO] Authenication
-    if (Cookies.get('user.logged_in')) {
-      setUser({
-        display_name: Cookies.get('user.name'),
-        handle: Cookies.get('user.username')
-      })
-    }
-  };
-
   React.useEffect(()=>{
     //prevents double call
     if (dataFetchedRef.current) return;
     dataFetchedRef.current = true;
 
     loadMessageGroupsData();
-    loadMessageGroupData();
-    checkAuth();
+    loadUserShortData();
+    checkAuth(setUser);
   }, [])
   return (
     <article>
       <DesktopNavigation user={user} active={'home'} setPopped={setPopped} />
       <section className='message_groups'>
-        <MessageGroupFeed message_groups={messageGroups} />
+        <MessageGroupFeed otherUser={otherUser} message_groups={messageGroups} />
       </section>
       <div className='content messages'>
         <MessagesFeed messages={messages} />
