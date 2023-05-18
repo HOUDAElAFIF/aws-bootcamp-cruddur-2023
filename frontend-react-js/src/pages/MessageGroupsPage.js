@@ -14,13 +14,9 @@ export default function MessageGroupsPage() {
   const dataFetchedRef = React.useRef(false);
 
   const loadData = async () => {
-    console.log(localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken"));
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
       const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
-        },
         method: "GET"
       });
       let resJson = await res.json();

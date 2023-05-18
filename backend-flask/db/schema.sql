@@ -7,13 +7,14 @@ CREATE TABLE public.users (
   uuid UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
   display_name text NOT NULL,
   handle text NOT NULL,
+  email text NOT NULL,
   cognito_user_id text NOT NULL,
   created_at TIMESTAMP default current_timestamp NOT NULL
 );
 
 CREATE TABLE public.activities (
   uuid UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
-  user_uuid UUID ,
+  user_uuid UUID NOT NULL,
   message text NOT NULL,
   replies_count integer DEFAULT 0,
   reposts_count integer DEFAULT 0,

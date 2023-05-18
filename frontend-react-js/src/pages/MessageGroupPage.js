@@ -19,17 +19,11 @@ export default function MessageGroupPage() {
   const params = useParams();
 
   const loadMessageGroupsData = async () => {
-    //console.log(localStorage.getItem("access_token"));
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
       const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
-        },
         method: "GET"
       });
-      //console.log("ana hadi")
-      console.log(Request.Authorization)
       let resJson = await res.json();
       if (res.status === 200) {
         setMessageGroups(resJson)
@@ -43,11 +37,9 @@ export default function MessageGroupPage() {
 
   const loadMessageGroupData = async () => {
     try {
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${params.message_group_uuid}`
+      const handle = `@${params.handle}`;
+      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${handle}`
       const res = await fetch(backend_url, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("CognitoIdentityServiceProvider.3bcjdrakort0964n2hd4t7cjo5.5e5a4c22-39d6-45e7-b8ed-86094ec81b44.accessToken")}`
-        },
         method: "GET"
       });
       let resJson = await res.json();
