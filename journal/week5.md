@@ -33,29 +33,29 @@ Pattern D: Create a new message in an exisintg group.
 
 ## Implementing the Update of  Cognito ID Script for Postgres Database
  
-    ![screen --> ](./ressources/5-9.png)
+![screen --> ](./ressources/5-9.png)
 
-    ![screen --> ](./ressources/5-10.png)
+![screen --> ](./ressources/5-10.png)
 
-    ![screen --> ](./ressources/5-11.png)
+![screen --> ](./ressources/5-11.png)
 
 ## Implement (Pattern A) Listing Messages in Message Group into Application
 
-    ![screen --> ](./ressources/5-13.png)
+![screen --> ](./ressources/5-13.png)
 
      
 
 ## 	Implement (Pattern B) Listing Messages Group into Application
      
-    ![screen --> ](./ressources/5-16.png)
+![screen --> ](./ressources/5-16.png)
 
 ## 	Implement (Pattern C) Creating a Message for an existing Message Group into Application
 
-     ![screen --> ](./ressources/5-14.png)
+![screen --> ](./ressources/5-14.png)
 
 ##  Implement (Pattern D) Creating a Message for a new Message Group into Application
 
-    ![screen --> ](./ressources/5-17.png)
+![screen --> ](./ressources/5-17.png)
 
 
 
@@ -63,6 +63,9 @@ Pattern D: Create a new message in an exisintg group.
 
 
    ![screen --> ](./ressources/5-21.png)
+
    ![screen --> ](./ressources/5-22.png)
+
    ![screen --> ](./ressources/5-23.png)
+   
    ![screen --> ](./ressources/5-24.png)
