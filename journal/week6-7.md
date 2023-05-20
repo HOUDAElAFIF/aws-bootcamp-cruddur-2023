@@ -31,7 +31,7 @@ aws ecr create-repository \
 ![screen --> ](./ressources/7-2.png)
 
 
-## Deploy Frontend React JS  and backend-flask app as a services to Fargate
+## - Deploy Frontend React JS  and backend-flask app as a services to Fargate
 
 - registering tasks definition
 
@@ -50,7 +50,7 @@ aws ecs create-service --cli-input-json file://aws/json/service-frontend-react-j
 
 ![screen --> ](./ressources/7-3.png)
 
-## Provision and configure Application Load Balancer along with target groups
+## - Provision and configure Application Load Balancer along with target groups
 
 ![screen --> ](./ressources/7-4.png)
 
@@ -58,22 +58,22 @@ aws ecs create-service --cli-input-json file://aws/json/service-frontend-react-j
 
 ![screen --> ](./ressources/7-6.png)
 
-## Setup a records set for  to frontend-react-js and backend-flask
+## - Setup a records set for  to frontend-react-js and backend-flask
 
 ![screen --> ](./ressources/7-7.png)
 
 ![screen --> ](./ressources/7-8.png)
 
-## Setup a load balancer listners rules
+## - Setup a load balancer listners rules
 
 ![screen --> ](./ressources/7-9.png)
 
-## My app is available on " houda-techy.link  " 
+## - My app is available on " houda-techy.link  " 
 
 ![screen --> ](./ressources/7-10.png)
 
 ![screen --> ](./ressources/7-11.png)
 
-## Refactoring bin directory to be top level
+## - Refactoring bin directory to be top level
 
 ![screen --> ](./ressources/7-13.png)
