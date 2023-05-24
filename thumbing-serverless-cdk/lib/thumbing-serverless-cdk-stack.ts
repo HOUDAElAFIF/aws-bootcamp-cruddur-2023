@@ -3,6 +3,7 @@ import { Construct } from 'constructs';
 import * as s3 from 'aws-cdk-lib/aws-s3' 
 import * as lambda from 'aws-cdk-lib/aws-lambda' ;
 import * as dotenv from 'dotenv' ;
+import * as s3n from 'aws-cdk-lib/aws-s3-notifications'
 
 // load env vars 
 dotenv.config() ;
@@ -19,6 +20,8 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
 
     const bucket = this.createBucket(BucketName) ;
     const lambda = this.createLambda(functionPath,folderInput,folderOutput,BucketName) ;
+
+    this.createS3NotifyToLambda(folderInput,lambda,bucket)
   }
 
   createBucket (bucketName:string):s3.IBucket{
@@ -49,5 +52,14 @@ export class ThumbingServerlessCdkStack extends cdk.Stack {
     return lambdaFuntion ;
   }
 
+
+  createS3NotifyToLambda(prefix: string, lambda: lambda.IFunction, bucket: s3.IBucket): void {
+    const destination = new s3n.LambdaDestination(lambda);
+      bucket.addEventNotification(
+        s3.EventType.OBJECT_CREATED_PUT,
+        destination,
+        //{prefix: prefix}
+    )
+  }
 
 }
