@@ -1,1 +1,4 @@
 __pycache__/
+docker/**/*
+frontend-react-js/build/*
+*.env

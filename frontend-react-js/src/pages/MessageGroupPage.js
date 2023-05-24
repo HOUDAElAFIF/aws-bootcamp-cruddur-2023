@@ -19,11 +19,27 @@ export default function MessageGroupPage() {
   const params = useParams();
 
   const loadMessageGroupsData = async () => {
+    //console.log(localStorage.getItem("access_token"));
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
+      const keys = Object.keys(localStorage);
+      let accessToken;
+
+      for (const key of keys) {
+        if (key.endsWith('.accessToken')) {
+          accessToken = localStorage.getItem(key);
+          break;
+        }
+      }
+      console.log(accessToken) ;
       const res = await fetch(backend_url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
         method: "GET"
       });
+      //console.log("ana hadi")
+      console.log(Request.Authorization)
       let resJson = await res.json();
       if (res.status === 200) {
         setMessageGroups(resJson)
@@ -37,9 +53,21 @@ export default function MessageGroupPage() {
 
   const loadMessageGroupData = async () => {
     try {
-      const handle = `@${params.handle}`;
-      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${handle}`
+      const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/messages/${params.message_group_uuid}`
+      const keys = Object.keys(localStorage);
+      let accessToken;
+
+      for (const key of keys) {
+        if (key.endsWith('.accessToken')) {
+          accessToken = localStorage.getItem(key);
+          break;
+        }
+      }
+      console.log(accessToken) ;
       const res = await fetch(backend_url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
         method: "GET"
       });
       let resJson = await res.json();

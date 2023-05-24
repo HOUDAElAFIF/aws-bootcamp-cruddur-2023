@@ -14,9 +14,23 @@ export default function MessageGroupsPage() {
   const dataFetchedRef = React.useRef(false);
 
   const loadData = async () => {
+    
     try {
       const backend_url = `${process.env.REACT_APP_BACKEND_URL}/api/message_groups`
+      const keys = Object.keys(localStorage);
+      let accessToken;
+
+      for (const key of keys) {
+        if (key.endsWith('.accessToken')) {
+          accessToken = localStorage.getItem(key);
+          break;
+        }
+      }
+      console.log(accessToken) ;
       const res = await fetch(backend_url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        },
         method: "GET"
       });
       let resJson = await res.json();
